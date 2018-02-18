@@ -1,26 +1,43 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TestApp.Web.Controllers;
 using Xunit;
+using static TestApp.Web.Controllers.TestRouteController;
 
 namespace TestApp.Tests
 {
     public class ApiTestRouteControllerTests
     {
-        [Fact]
-        public void GetRoutes_ReturnsListOfTestRoutes()
+        public string[] _baseRoutes;
+        public TestRouteController _controller;
+        public IEnumerable<Route> _routes;
+
+        public ApiTestRouteControllerTests()
         {
-            var testRoutes = new string[] {
+            _baseRoutes = new string[] {
                 "Foo", "Bar", "Baz"
             };
 
-            var testRoutesEnum = (IEnumerable<string>)testRoutes;
+            var _controller = new TestRouteController();
+            _controller.SetBaseRoutes(_baseRoutes);
 
-            var controller = new TestRouteController(testRoutes);
+            this._routes = _controller.GetRoutes();
+        }
 
-            var result = controller.GetRoutes();
+        [Fact]
+        public void GetRoutes_ReturnsListOfTestRoutes()
+        {
+            var testRoute =  new Route {
+                Name = _baseRoutes[0],
+            };
 
-            Assert.Equal(testRoutes, result);
+            Assert.True(this._routes.Any());
+            Assert.True(this._routes.Any(x => x.Name == testRoute.Name));
+            // Assert.Contains(testRoute, this._routes);
+
+            Assert.True(this._baseRoutes.Length == this._routes.Count());
         }
     }
 }
