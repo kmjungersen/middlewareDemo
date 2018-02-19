@@ -11,11 +11,12 @@ image: Visual Studio 2017
 
 environment:
   nodejs_version: "6"
-  CLI_VERSION: Latest
+  CLI_VERSION: "2.1.4"
 
 clone_folder: c:\projects\middlewareDemo
 
 install:
+  - dotnet --info
   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
   - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
   - ps: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1" -OutFile "$($env:DOTNET_INSTALL_DIR)/dotnet-install.ps1"
@@ -25,6 +26,7 @@ install:
   - npm install -g npm
   - node --version
   - npm --version
+  - dotnet --info
 
 build_script:
   - cd TestApp.Web
