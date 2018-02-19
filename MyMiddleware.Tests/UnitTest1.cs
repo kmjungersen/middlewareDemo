@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Profiler.Tests
+namespace MyMiddleware.Tests
 {
     [TestClass]
     public class UnitTest1
