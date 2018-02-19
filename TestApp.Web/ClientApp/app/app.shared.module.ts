@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
@@ -23,7 +21,6 @@ import { ResultsComponent } from './components/results/results.component';
     ],
     imports: [
         CommonModule,
-        HttpModule,
         FormsModule,
         HttpClientModule,
         RouterModule.forRoot([

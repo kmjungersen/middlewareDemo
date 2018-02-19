@@ -21,5 +21,6 @@ install:
   - node --version
   - npm --version
   - npm install
+  - set ASPNETCORE_ENVIRONMENT=Development
   - dotnet restore
   - dotnet build
