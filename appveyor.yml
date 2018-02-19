@@ -4,15 +4,20 @@ branches:
   only:
     - master
 
-image: Visual Studio 2017
+init:
+  - git config --global core.autocrlf true
 
-clone_folder: c:\projects\middlewareDemo
+image: Visual Studio 2017
 
 environment:
   nodejs_version: "6"
 
+clone_folder: c:\projects\middlewareDemo
+
 install:
   - cd TestApp.Web
+  - node --version
+  - npm --version
   - npm install
   - dotnet restore
   - dotnet build
