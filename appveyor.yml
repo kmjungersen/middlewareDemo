@@ -16,6 +16,8 @@ clone_folder: c:\projects\middlewareDemo
 
 install:
   - cd TestApp.Web
+  - ps: Install-Product node 6
+  - npm install -g npm
   - node --version
   - npm --version
   - npm install
