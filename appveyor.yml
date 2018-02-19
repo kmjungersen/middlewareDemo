@@ -40,6 +40,8 @@ before_test:
   - dotnet build
   - cd ..
 
-test:
-  assemblies:
-    - '**\*.tests.dll'
+test_script:
+  - cd TestApp.Tests/
+  - dotnet test
+  - cd ../MyMiddleware.Tests
+  - dotnet test
