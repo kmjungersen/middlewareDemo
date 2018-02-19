@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using TestApp.Web.Objects;
 
 namespace TestApp.Web.Controllers
 {
     [Route("api/[controller]")]
     public class TestRouteController : Controller
     {
-        private static string[] _baseRoutes = new[]
+        public static string[] _baseRoutes = new[]
         {
             "Vader", "Yoda", "Windu", "Rey", "Skywalker", "Kenobi", "Grievous", "Leia", "Solo"
         };
@@ -19,19 +20,12 @@ namespace TestApp.Web.Controllers
 
         public TestRouteController()
         {
-            if (this._routes == null)
+            // Create list of Routes based on the base array of strings
+            this._routes = Enumerable.Range(0, _baseRoutes.Length).Select(x => new Route
             {
-                this._routes = Enumerable.Range(0, _baseRoutes.Length).Select(x => new Route
-                {
-                    Name = _baseRoutes[x],
-                    Points = 0,
-                });
-            }
-        }
-
-        public void SetBaseRoutes(string[] routes)
-        {
-            _baseRoutes = routes;
+                Name = _baseRoutes[x],
+                Points = 0,
+            });
         }
 
         [HttpGet("[action]")]
@@ -49,40 +43,19 @@ namespace TestApp.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public Route PostRoute(Route foo)
+        public Route PostRoute(Route postedRoute)
         {
-            // var bar = HttpContext.Request.Body;
-            var name = foo.Name;
-
-            Console.WriteLine(name);
+            // Find the existing Route
             var existingRoute = this._routes.FirstOrDefault(x =>
-                x.Name == name
+                x.Name == postedRoute.Name
             );
 
-            Route route;
-
-            if (existingRoute == null) {
-                route = new Route()
-                {
-                    Name = name,
-                    Points = 1,
-                    Blocked = true,
-                };
-                this._routes.Append(route);
-            } else {
+            // Increment the call count by 1
+            if (existingRoute != null) {
                 existingRoute.Points += 1;
-                route = existingRoute;
             }
 
-            return route;
-        }
-
-        public class Route
-        {
-            public string Name { get; set; }
-            public int? Points { get; set; }
-            public bool Blocked { get; set; }
-            // public SByte Data { get; set; }
+            return existingRoute;
         }
     }
 }

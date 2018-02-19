@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyApp.Middleware;
+using MyMiddleware;
+using MyMiddleware.Objects;
 
 namespace TestApp.Web
 {
@@ -25,15 +26,21 @@ namespace TestApp.Web
         {
             services.AddMvc();
 
-            // Register the logger as a transient service
+            // Register our middleware for use as a service.  It's registered as a Singleton because
+            // we only want one instance to be created during the lifespan of the application, rather
+            // than creating and destroying it as needed.
             services.AddSingleton<IMiddlewareLogger, MiddlewareLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Add our middleware component to the very beginning of the request pipeline
+            // Inject our middleware component to the very beginning of the request pipeline.  This will
+            // get hit first when requests hit the server, and will get hit last as responses are on their
+            // way back to the client.
             app.UseMyMiddleware();
+
+            // Boilerplate .NET Core code to handle the rest of the request below
 
             if (env.IsDevelopment())
             {
