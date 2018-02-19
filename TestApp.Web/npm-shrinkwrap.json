@@ -68,6 +68,15 @@
         "tslib": "1.9.0"
       }
     },
+    "@angular/http": {
+      "version": "4.3.0",
+      "resolved": "https://registry.npmjs.org/@angular/http/-/http-4.3.0.tgz",
+      "integrity": "sha1-37czEKhApq2AUKxR8OVcSYTbCSY=",
+      "dev": true,
+      "requires": {
+        "tslib": "1.9.0"
+      }
+    },
     "@angular/platform-browser": {
       "version": "4.3.0",
       "resolved": "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-4.3.0.tgz",
