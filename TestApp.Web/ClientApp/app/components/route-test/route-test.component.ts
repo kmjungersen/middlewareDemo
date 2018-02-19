@@ -1,8 +1,6 @@
 import { Component, Inject } from '@angular/core';
-// import { Http } from '@angular/http';
 // import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-// import { RequestMethod } from '@angular/http';
 
 @Component({
     selector: 'route-test',

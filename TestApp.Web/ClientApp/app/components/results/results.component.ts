@@ -1,7 +1,5 @@
 import { Component, Inject } from '@angular/core';
-// import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-// import { RequestMethod } from '@angular/http';
 
 @Component({
     selector: 'results',
