@@ -10,15 +10,15 @@ init:
 image: Visual Studio 2017
 
 environment:
-  nodejs_version: "6"
-  CLI_VERSION: "1.0.0"
+  NODEJS_VERSION: "6"
+  CLI_VERSION: "2.1.4"
 
 clone_folder: c:\projects\middlewareDemo
 
 install:
   - dotnet --info
-  - ps: @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&([scriptblock]::Create((Invoke-WebRequest -useb 'https://dot.net/v1/dotnet-install.ps1'))) -Channel 2.0 -InstallDir C:\cli"
-  - ps: Install-Product node 6
+  - ps: ./dotnet-install.ps1
+  - ps: Install-Product node $env:NODEJS_VERSION
   - npm install -g npm
   - node --version
   - npm --version
