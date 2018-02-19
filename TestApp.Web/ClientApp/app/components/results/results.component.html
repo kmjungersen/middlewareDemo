@@ -12,11 +12,11 @@
             <th>Method</th>
             <th>Status Code</th>
             <th>Path</th>
-            <th>Size</th>
+            <th>Size (Bytes)</th>
             <th>Request Time</th>
             <th>Response Time</th>
-            <th>Total Request Time</th>
-            <th>Processing Time</th>
+            <th>Total Request Time (ms)</th>
+            <th>Processing Time (ms)</th>
         </tr>
     </thead>
     <tbody>
@@ -25,8 +25,8 @@
             <td>{{ log.statusCode }} </td>
             <td>{{ log.path }} </td>
             <td>{{ log.size }} </td>
-            <td>{{ log.requestTime | date:'mm/dd/yy h:mm:ss a' }} </td>
-            <td>{{ log.responseTime | date:'mm/dd/yy h:mm:ss a' }} </td>
+            <td>{{ log.requestTime | date:'M/dd/yy h:mm:ss a' }} </td>
+            <td>{{ log.responseTime | date:'M/dd/yy h:mm:ss a' }} </td>
             <td>{{ log.totalRequestTime }} </td>
             <td>{{ log.processingTime }} </td>
         </tr>

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MyMiddleware.Objects;
+using System.IO;
 
 namespace MyMiddleware.Objects
 {
@@ -40,15 +41,13 @@ namespace MyMiddleware.Objects
         {
             // Set the status code and size of response
             requestLog.StatusCode = response.StatusCode;
-            requestLog.Size = response.ContentLength.ToString();
 
             // Set the Response time and then calculate the total request time
             requestLog.ResponseTime = DateTime.Now;
             var totalRequestTime = requestLog.ResponseTime.Subtract(requestLog.RequestTime);
 
-            // Since the entire request can be a fraction of a milisecond in this app, I'm measuring in ticks (1/10,000 of a millisecond)
-            // and then converting to milliseconds to retain the decimal instead of using foo.ToMilliseconds, which would round the number
-            requestLog.TotalRequestTime = ((long)(totalRequestTime.Ticks / 10000)).ToString();
+            // Record the time detla in milliseconds
+            requestLog.TotalRequestTime = totalRequestTime.TotalMilliseconds.ToString();
 
             // Return the updated request log
             return requestLog;
