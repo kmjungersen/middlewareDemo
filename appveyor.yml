@@ -11,7 +11,7 @@ image: Visual Studio 2017
 
 environment:
   nodejs_version: "6"
-  CLI_VERSION: "2.1.4"
+  CLI_VERSION: "1.0.0"
 
 clone_folder: c:\projects\middlewareDemo
 
