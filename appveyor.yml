@@ -30,3 +30,7 @@ build_script:
   - set ASPNETCORE_ENVIRONMENT=Development
   - dotnet restore
   - dotnet build
+
+test:
+  assemblies:
+    - '**\*.tests.dll'
