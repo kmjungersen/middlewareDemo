@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyApp.Middleware;
 
 namespace TestApp.Web
 {
@@ -23,11 +24,17 @@ namespace TestApp.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            // Register the logger as a transient service
+            services.AddSingleton<IMiddlewareLogger, MiddlewareLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Add our middleware component to the very beginning of the request pipeline
+            app.UseMyMiddleware();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

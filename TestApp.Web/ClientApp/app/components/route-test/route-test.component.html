@@ -9,17 +9,14 @@
         <tr>
             <th>Route Name</th>
             <th>Points</th>
-            <th>Blocked</th>
-            <!-- <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th> -->
+            <th>Call API</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let route of routes">
             <td>{{ route.name }}</td>
             <td>{{ route.points }}</td>
-            <td>{{ route.blocked }}</td>
+            <td><a role="button" (click)="callApi(route.name)" class="btn btn-primary">Call This Route</a></td>
         </tr>
     </tbody>
 </table>

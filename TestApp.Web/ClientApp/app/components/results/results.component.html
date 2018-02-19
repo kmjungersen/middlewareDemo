@@ -1,0 +1,34 @@
+<h1>Midddleware Logging Results</h1>
+
+<p>This component demonstrates the results that we logged with our custom middleware.</p>
+
+<p *ngIf="!logs">
+    <em>Loading...</em>
+</p>
+
+<table class='table' *ngIf="logs">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Status Code</th>
+            <th>Path</th>
+            <th>Size</th>
+            <th>Request Time</th>
+            <th>Response Time</th>
+            <th>Total Request Time</th>
+            <th>Processing Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let log of logs">
+            <td>{{ log.method }} </td>
+            <td>{{ log.statusCode }} </td>
+            <td>{{ log.path }} </td>
+            <td>{{ log.size }} </td>
+            <td>{{ log.requestTime | date:'mm/dd/yy h:mm:ss a' }} </td>
+            <td>{{ log.responseTime | date:'mm/dd/yy h:mm:ss a' }} </td>
+            <td>{{ log.totalRequestTime }} </td>
+            <td>{{ log.processingTime }} </td>
+        </tr>
+    </tbody>
+</table>

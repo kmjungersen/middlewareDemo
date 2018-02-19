@@ -17,7 +17,17 @@ namespace TestApp.Web.Controllers
 
         private IEnumerable<Route> _routes;
 
-        public TestRouteController() { }
+        public TestRouteController()
+        {
+            if (this._routes == null)
+            {
+                this._routes = Enumerable.Range(0, _baseRoutes.Length).Select(x => new Route
+                {
+                    Name = _baseRoutes[x],
+                    Points = 0,
+                });
+            }
+        }
 
         public void SetBaseRoutes(string[] routes)
         {
@@ -27,14 +37,6 @@ namespace TestApp.Web.Controllers
         [HttpGet("[action]")]
         public IEnumerable<Route> GetRoutes()
         {
-            if (this._routes == null) {
-                this._routes = Enumerable.Range(0, _baseRoutes.Length).Select(x => new Route
-                {
-                    Name = _baseRoutes[x],
-                });
-            }
-
-            // var result = JsonConvert.SerializeObject(routes);
             return this._routes;
         }
 
@@ -47,19 +49,30 @@ namespace TestApp.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public Route PostRoute(string routeName, int? points)
+        public Route PostRoute(Route foo)
         {
+            // var bar = HttpContext.Request.Body;
+            var name = foo.Name;
+
+            Console.WriteLine(name);
             var existingRoute = this._routes.FirstOrDefault(x =>
-                x.Name == routeName
-                && x.Points == points
+                x.Name == name
             );
 
-            var route = existingRoute ?? new Route() {
-                Name = routeName,
-                Points = points,
-            };
+            Route route;
 
-            this._routes.Append(route);
+            if (existingRoute == null) {
+                route = new Route()
+                {
+                    Name = name,
+                    Points = 1,
+                    Blocked = true,
+                };
+                this._routes.Append(route);
+            } else {
+                existingRoute.Points += 1;
+                route = existingRoute;
+            }
 
             return route;
         }
