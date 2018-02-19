@@ -31,6 +31,15 @@ build_script:
   - dotnet restore
   - dotnet build
 
+before_test:
+  - cd ../TestApp.Tests
+  - dotnet restore
+  - dotnet build
+  - cd ../MyMiddleware.Tests
+  - dotnet restore
+  - dotnet build
+  - cd ..
+
 test:
   assemblies:
     - '**\*.tests.dll'
