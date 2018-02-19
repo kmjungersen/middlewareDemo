@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler", "Profiler\Profiler.csproj", "{BF29DAB3-EEB1-460A-9AC9-E6619BB48512}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMiddleware", "MyMiddleware\MyMiddleware.csproj", "{BF29DAB3-EEB1-460A-9AC9-E6619BB48512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiler.Tests", "Profiler.Tests\Profiler.Tests.csproj", "{19FFA133-47F4-4D72-B67F-CDC7D12DD4CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMiddleware.Tests", "MyMiddleware.Tests\MyMiddleware.Tests.csproj", "{19FFA133-47F4-4D72-B67F-CDC7D12DD4CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Web", "TestApp.Web\TestApp.Web.csproj", "{B76FEC93-3BAD-47B0-A093-48C8C7A4A94D}"
 EndProject
