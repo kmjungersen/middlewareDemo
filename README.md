@@ -85,22 +85,22 @@ For the purposes of this README, it's assumed that the following software is alr
 ## Running the Web App
 
  1. Clone Repo
- 1. Install NPM Packages
+ 2. Install NPM Packages
   ```bash
   # Navigate to the web app within the solution
   $ cd <path_to_repo>/TestApp.Web
   $ npm install
   ```
- 1. Restore .NET Packages (also happens at runtime)
+ 3. Restore .NET Packages (also happens at runtime)
   ```bash
   # From the web app directory
   $ dotnet restore
   ```
- 1. Build the app (also happens at runtime)
+ 4. Build the app (also happens at runtime)
   ```bash
   $ dotnet build
   ```
- 1. Run the app
+ 5. Run the app
   ```bash
   # Optional: To run in development mode:
   $ set ASPNETCORE_ENVIRONMENT=Development
@@ -109,10 +109,10 @@ For the purposes of this README, it's assumed that the following software is alr
   #
   # You should see something like this:
   #
-  # Hosting environment: Development
-  # Content root path: /<path_to_repo>/TestApp.Web
-  # Now listening on: http://localhost:5000
-  # Application started. Press Ctrl+C to shut down.
+  Hosting environment: Development
+  Content root path: /<path_to_repo>/TestApp.Web
+  Now listening on: http://localhost:5000
+  Application started. Press Ctrl+C to shut down.
   ```
 
 Once the app is up and running, using it is pretty simple:
@@ -121,6 +121,16 @@ Once the app is up and running, using it is pretty simple:
   1. Navigate to the "Results" page
   1. Here we can view all of the logged requests since the application fired up and some details on each request
 
+In addition to the Min, Max, and Average request Size, the results page shows the following metrics.  Everything is refreshed either on page reload or display.
+
+ * **Status Code** - e.g. 200, 404, etc.
+ * **Method** - e.g. GET, POST, etc.
+ * **Path** - the full path of the request inclduing the URL and query
+ * **Size** - the size of the request in bytes
+ * **Request Time** - the timestamp of the request
+ * **Request Time** - the timestamp of the response
+ * **Total Request Time** - the start to end time in milliseconds
+ * **Processing Time** - the total time spent processing the logs in
 
 ## Cross-platform Zen
 
