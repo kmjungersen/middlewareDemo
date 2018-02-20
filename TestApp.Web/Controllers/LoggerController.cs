@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using MyMiddleware;
 using MyMiddleware.Objects;
+using TestApp.Web.Objects;
 
 namespace TestApp.Web.Controllers
 {
@@ -25,7 +26,22 @@ namespace TestApp.Web.Controllers
         public IEnumerable<RequestLog> GetLogs()
         {
             // Return a list of logs
-            return this._logger.GetLogs(); ;
+            return this._logger.GetLogs();
+        }
+
+        [HttpGet("[action]")]
+        public ResultStatistics GetStatistics()
+        {
+            var logs = this._logger.GetLogs();
+
+            var resultStats = new ResultStatistics
+            {
+                MaxRequest = logs.Max(x => Convert.ToInt32(x.Size)).ToString(),
+                MinRequest = logs.Min(x => Convert.ToInt32(x.Size)).ToString(),
+                AvgRequest = logs.Average(x => Convert.ToInt32(x.Size)).ToString(),
+            };
+
+            return resultStats;
         }
     }
 }

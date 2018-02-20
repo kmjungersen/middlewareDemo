@@ -2,33 +2,52 @@
 
 <p>This component demonstrates the results that we logged with our custom middleware.</p>
 
-<p *ngIf="!logs">
+<p *ngIf="!logs || !resultStats">
     <em>Loading...</em>
 </p>
 
-<table class='table' *ngIf="logs">
-    <thead>
-        <tr>
-            <th>Method</th>
-            <th>Status Code</th>
-            <th>Path</th>
-            <th>Size (Bytes)</th>
-            <th>Request Time</th>
-            <th>Response Time</th>
-            <th>Total Request Time (ms)</th>
-            <th>Processing Time (ms)</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let log of logs">
-            <td>{{ log.method }} </td>
-            <td>{{ log.statusCode }} </td>
-            <td>{{ log.path }} </td>
-            <td>{{ log.size }} </td>
-            <td>{{ log.requestTime | date:'M/dd/yy h:mm:ss a' }} </td>
-            <td>{{ log.responseTime | date:'M/dd/yy h:mm:ss a' }} </td>
-            <td>{{ log.totalRequestTime }} </td>
-            <td>{{ log.processingTime }} </td>
-        </tr>
-    </tbody>
-</table>
+<div *ngIf="resultStats">
+    <h3>Request Size Statistics</h3>
+    <table class="table">
+        <thead>
+            <th>Min Request (bytes)</th>
+            <th>Max Request (bytes)</th>
+            <th>Avg Request (bytes)</th>
+        </thead>
+        <tbody>
+            <td>{{ resultStats.minRequest | number:'1.0-2' }}</td>
+            <td>{{ resultStats.maxRequest | number:'1.0-2' }}</td>
+            <td>{{ resultStats.avgRequest | number:'1.0-2' }}</td>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="logs">
+    <h3>Request Log</h3>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Method</th>
+                <th>Status Code</th>
+                <th>Path</th>
+                <th>Size (Bytes)</th>
+                <th>Request Time</th>
+                <th>Response Time</th>
+                <th>Total Request Time (ms)</th>
+                <th>Processing Time (ms)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let log of logs">
+                <td>{{ log.method }} </td>
+                <td>{{ log.statusCode }} </td>
+                <td>{{ log.path }} </td>
+                <td>{{ log.size | number:'1.0-2' }} </td>
+                <td>{{ log.requestTime | date:'M/dd/yy h:mm:ss a' }} </td>
+                <td>{{ log.responseTime | date:'M/dd/yy h:mm:ss a' }} </td>
+                <td>{{ log.totalRequestTime | number:'1.0-2' }} </td>
+                <td>{{ log.processingTime | number:'1.0-2' }} </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

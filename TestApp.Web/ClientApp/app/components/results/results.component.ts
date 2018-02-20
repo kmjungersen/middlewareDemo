@@ -7,17 +7,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResultsComponent {
     logs: Log[];
+    resultStats: ResultStatistics;
 
     constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/Logger/GetLogs').subscribe(data => {
             this.logs = data as Log[];
-            this.computeStats();
         }, error => console.error(error));
-    }
 
-    computeStats() {
-        this.logs = this.logs.sort((a, b) => a.requestTime.getTime() - b.requestTime.getTime());
-        // let posts = this.logs.filter(x => x.type == 'POST');
+        http.get(baseUrl + 'api/Logger/GetStatistics').subscribe(data => {
+            this.resultStats = data as ResultStatistics;
+        }, error => console.error(error));
+
     }
 }
 
@@ -30,4 +30,10 @@ interface Log {
     responseTime: Date,
     totalRequestTime: Date,
     processingTime: Date,
+}
+
+interface ResultStatistics {
+    minRequest: string,
+    maxRequest: string,
+    avgRequest: string,
 }
