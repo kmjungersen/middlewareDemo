@@ -65,10 +65,10 @@ Although I haven't attempted shared dependency injection like this in previous v
 For the purposes of this README, it's assumed that the following software is already installed
 
  * .NET Core 2.1.4
-  * [Downloads](https://www.microsoft.com/net/learn/get-started/macos)
-  * (CI Install script for Powershell and Bash included in root directory)
+   * [Downloads](https://www.microsoft.com/net/learn/get-started/macos)
+   * (CI Install script for Powershell and Bash included in root directory)
  * Node.JS v6.12.3
-  * [Downloads](https://nodejs.org/en/download/)
+   * [Downloads](https://nodejs.org/en/download/)
  * NPM v5.6.0
 
  To check the current installed version of each of these, run:
